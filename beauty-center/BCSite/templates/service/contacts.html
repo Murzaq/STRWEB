@@ -1,0 +1,18 @@
+{% extends 'service/base.html' %}
+{% block title %}Contacts{% endblock %}
+{% block content %}
+<div>
+    <h1>Contacts</h1>
+    {%for employee in contacts%}
+    <figure >
+        <img style="width:150px" src="{{employee.photo.url}}" alt="" />
+        <figcaption>
+            <ul >
+                <li>{{employee.user.username}}</li>
+                <li>+375(16) 000-00-0{{employee.user.id}}</li>
+            </ul>
+        </figcaption>
+    </figure>
+    {%endfor%}
+</div>
+{% endblock %}

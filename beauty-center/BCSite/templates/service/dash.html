@@ -1,0 +1,13 @@
+{% extends 'service/base.html' %}
+{% block title %}statistic{% endblock %}
+{% block content %}
+<div>
+    <h1>Statistic's</h1>
+    <div class="textBlock">
+        <h2>Diagarams</h2>
+        {{ts|safe}}
+        <h3>Money gain: {{mg}}$</h3>
+    </div>
+</div>
+{% endblock %}
+

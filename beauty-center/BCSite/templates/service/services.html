@@ -1,0 +1,82 @@
+{% extends 'service/base.html' %}
+{% block title %}Services page{% endblock %}
+{% block content %}
+<div>
+    <div class="order" id="order" hidden>
+        <form method="post">
+            {% csrf_token %}
+            <textarea type="text" id="orderList" readonly></textarea>
+            <input type="text" name="sunits" id="orderListInput" hidden>
+            <div class="inputBlock">
+                <input type="submit" value="Submit order" id="orderSubmit">
+                <button onclick="resetOrder()">Reset</button>
+            </div>
+        </form>
+    </div>
+    <h1>Our service</h1>
+    <div style="justify-content: row;display: flex;margin:50px 0px;">
+        <table>
+            {%for service in services%}
+                <tr>
+                    <td id="service{{service.id}}">
+                        {{service}} {{service.work_price}}$
+                    </td>
+                    <td>
+                        <button id="{{service.id}}" onclick="addOrder('{{service.id}}');">Add to order</button>
+                    </td>
+                    
+                </tr>
+            {%endfor%}
+        </table>
+        <form method="get" class="filterWrapper" id="filterForm">
+            <div class="priceFilter">
+                <span class="detailTextDark">Price</span>
+                <div class="inputBlock">
+                    <span class="inputDescription">from:</span> 
+                    <input type="number" name="pfrom" id="filterInput" step = '0.01' value="{{pfrom}}" min="0">
+                </div>
+                <div class="inputBlock">
+                    <span class="inputDescription">to:</span>
+                    <input type="number" name="pto" id="filterInput" step = '0.01' value="{{pto}}" min="0">
+                </div>
+            </div>
+            <hr class="filterSeparator" noshade color="#f5f5f5"/>
+            <div class="formatFilter">
+                <span class="detailTextDark">Types</span>
+                {%for type in types%}
+                <div class="inputBlock">
+                    <input type="checkbox" name="{{type}}checkbox">
+                    <span class="inputGenre">{{type}}</span>
+                </div>
+                {%endfor%}
+            </div>
+            <div class="inputBlock">
+                <input type="submit" value="Filter" id="filterButton">
+                <a href = "/services" id="filterButton">
+                    Reset
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function addOrder(serviceId){
+
+        if(document.getElementById('order').hidden){
+            document.getElementById('order').hidden=false
+        }
+
+        document.getElementById('orderListInput').value=document.getElementById('orderListInput').value+"|"+serviceId
+        document.getElementById('orderList').value=document.getElementById('orderList').value+'\n'+document.getElementById('service'+serviceId).innerHTML
+
+    }
+
+    function resetOrder(){
+        document.getElementById('order').hidden = true;
+        document.getElementById('orderListInput').value=''
+        document.getElementById('order').innerHTML='<form method=\'post\'>{% csrf_token %}<textarea type="text" id="orderList" readonly></textarea><input type="text" name="sunits" id="orderListInput" hidden><div class="inputBlock"><input type="submit" value="Submit order" id="orderSubmit"><button onclick="resetOrder()">Reset</button></div></form>'
+    }
+
+</script>
+{% endblock %}

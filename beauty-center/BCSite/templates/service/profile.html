@@ -1,0 +1,51 @@
+{% extends 'service/base.html' %}
+{% block title %}Home page{% endblock %}
+{% block content %}
+<div class = 'textBlock'>
+    <h1>{{user.username}} profile</h1>
+    {%if profile == 'e'%}
+    <h2>
+        Your tasks
+    </h2>
+        {%for i in sunits%}
+        <ul class="task">
+            <li>{{i.service}}</li>
+            <li>{{i.order.date}}</li>
+            <li>Client:{{i.order.client.username}}</li>
+        </ul>
+        {%endfor%}
+    {%else%}
+    <h2>
+        Your orders
+    </h2>
+    {%for i in op%}
+        <ul>
+            <li>Order {{i.0.id}}</li>
+            <li>Orderdate: {{i.0.contractDate}}</li>
+            <li>Deadline: {{i.0.deadline}}</li>
+            {%if i.1%}
+            Your review:{{i.1.rate}} 
+            <q>{{i.1.text}}</q>
+            {%else%}
+                <form method="post" >
+                    {%csrf_token%}
+                    <br>
+                    <input type="number" name="orderid" value="{{i.0.id}}" hidden>
+                    Leave review
+                    <input type="text" name="review" >
+                    Rate
+                    <select name="rate" >
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                    <input type="submit" value="Submit review" id="reviewSubmit">
+                </form>
+            {%endif%}
+        </ul>
+    {%endfor%}
+    {%endif%}
+</div>
+{% endblock %}

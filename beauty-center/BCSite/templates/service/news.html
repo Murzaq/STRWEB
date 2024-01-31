@@ -1,0 +1,20 @@
+{% extends 'service/base.html' %}
+{% block title %}News{% endblock %}
+{% block content %}
+<div>
+    <h1>News</h1>
+    {%for item in news%}
+    <a href="{% url 'article' news_id=item.id %}" >
+        <div class = "news">
+            <img style="height:100px; margin: 10px;" src="{{item.photo.url}}" >
+            <div>
+                <span class = "newsDate">{{item.date}}</span>
+                <h3>{{item.title}}</h3>
+                <div style="overflow: hidden; width: 800px; height: 25px;">{{item.text}}</div>
+            </div>
+        </div>
+    </a>
+    {%endfor%}
+</div>
+{% endblock %}
+

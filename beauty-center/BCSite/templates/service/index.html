@@ -1,0 +1,34 @@
+{% extends 'service/base.html' %}
+{%load static%}
+{% block title %}Home page{% endblock %}
+{% block content %}
+<div>
+    <marquee>Hi customer, welcome to our Beauty Club. Only now and only today use our promocode FIRSTTIME to get 50% discount</marquee>
+    <br><br>
+    <h1>Home page</h1>
+    <h2>Last news</h2>
+    {%for item in news%}
+        <div class = "news">
+            <time >{{item.date}}</time>
+            <a class="news" href="{% url 'article' news_id=item.id %}"><h3>{{item.title}}</h3></a>    
+        </div>
+    {%endfor%}
+    <h2>Last reviews</h2>
+    <section >
+        {%for review in reviews%}
+            <div class="reviewBlock">
+                <h4>
+                    {{review.author}} : {{review.rate}} ★
+                </h4>
+                <div readonly draggable="false">Text: {{review.text}}</div> 
+            </div>
+        {%endfor%}
+    </section>
+    <h2>Our partners</h2>
+    <div class="partners">
+        <a href = 'https://www.bsuir.by/ru/fksis'><img src=/image/fksis.svg class="partnerLogo"></a>
+        <a href = 'https://www.bsuir.by/ru/fksis/studsovet'><img src=/image/ss.svg class="partnerLogo"></a>
+    </div>
+    <br>
+</div>
+{% endblock %}
