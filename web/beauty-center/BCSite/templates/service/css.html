@@ -1,0 +1,39 @@
+{% extends 'service/base.html' %}
+{% block title %}statistic{% endblock %}
+{% block content %}
+<div>
+    <h1>CSS</h1>
+    Selector atribut : <input type="color">
+    <br><br>
+    
+    <form style="display:flex; flex-direction: column; justify-content: space-around; height: 200px; position: sticky; top: 0;">
+        <input type="text" required placeholder="required">
+        <input type="text" disabled placeholder="disabled">
+        <input type="text" placeholder="enabled">
+        <input type="number" max="10" value="15">
+    </form>
+    <q lang="ru">Привет, это цитата на русском</q>
+    <br>
+    <q lang="en">Hi, this quote is in english</q>
+    <br><br>
+    <article class="articleColumns"> a a a a a a  a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a av</article>
+    
+    <div class="gridA">
+        <p>a</p>
+        
+        <p>a</p>
+        
+        <p>a</p>
+        
+        <p>a</p>
+        
+        <p>a</p>
+        
+        <p>a</p>
+    </div>
+
+    <div class="kern">Kerning</div>
+
+</div>
+{% endblock %}
+

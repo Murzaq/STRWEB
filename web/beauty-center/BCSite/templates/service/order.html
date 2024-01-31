@@ -1,0 +1,28 @@
+{% extends 'service/base.html' %}
+{% block title %}News{% endblock %}
+{% block content %}
+<div>
+    <table class="order">
+        <caption><h1>Your order</h1></caption>
+        {%for task in list%}
+            <tr>
+                <td>{{task}}</td>
+                <td>{{task.type}}</td>
+                <td>{{task.work_price}} $</td>
+            </tr>   
+        {%endfor%}
+    </table>
+    <div>Total price:{{tprice}}$</div>
+    <form method="post" >
+        {%csrf_token%}
+        <ul class="orderDetails">
+            <li>
+                Date:<input type="date" name="date">
+            </li>
+        </ul>
+        <input type="submit" value="Submit order" id="orderSubmit">
+    </form>
+    <br><br><br>
+</div>
+{% endblock %}
+

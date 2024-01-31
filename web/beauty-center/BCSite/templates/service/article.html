@@ -1,0 +1,15 @@
+{% extends 'service/base.html' %}
+{% block title %}Article{% endblock %}
+{% block content %}
+<div>
+    <article itemtype="https://schema.org/Article" class="textBlock">
+        <h1 id="articleTitle">{{article.title}}</h1>
+        <date><i>{{article.date}}</i></date>
+        <img class="articlePhoto" src="{{article.photo.url}}">
+        <p itemprop='articleBody' >
+            {{article.text|safe}}
+        </p>
+        <a class="nonHeaderLink" href="#articleTitle">To the start</a>
+    </article>
+</div>
+{% endblock %}
